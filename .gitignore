@@ -28,6 +28,8 @@ go.work.sum
 .env
 
 storage
+# Local config
+/config
 
 # Editor/IDE
 # .idea/

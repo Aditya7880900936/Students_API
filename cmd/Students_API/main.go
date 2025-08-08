@@ -29,16 +29,16 @@ func main() {
 	// setup server
 
 	server := http.Server{
-		Addr:    cfg.Address,
+		Addr:    cfg.Addr,
 		Handler: router,
 	}
 
-	slog.Info("Server is Running at the Port :", cfg.Address)
+	slog.Info("Server is Running at the Port :", cfg.Addr)
 
 	done := make(chan os.Signal, 1)
 
 	signal.Notify(done, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
-
+ 
 	go func() {
 		err := server.ListenAndServe()
 		if err != nil {

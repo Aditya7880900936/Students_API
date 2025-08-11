@@ -11,6 +11,7 @@ import (
 
 	"github.com/Aditya7880900936/Students_API/internal/config"
 	student "github.com/Aditya7880900936/Students_API/internal/http/handlers/students"
+	"github.com/Aditya7880900936/Students_API/internal/storage/sqlite"
 )
 
 func main() {
@@ -19,6 +20,13 @@ func main() {
 	cfg := config.MustLoad()
 
 	// databse setup
+
+	_storage, err := sqlite.New(cfg)
+	if err != nil {
+		slog.Error("Failed to Connect to the Database", slog.String("error", err.Error()))
+	}
+
+	slog.Info("Successfully Connected to the Database")
 	// router setup
 
 	router := http.NewServeMux()
